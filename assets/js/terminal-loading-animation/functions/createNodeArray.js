@@ -32,7 +32,6 @@ export default (nodes) => {
             { acceptNode }
         );
         pushAcceptedNodeToNodesArray(nodes, treeWalker)
-        console.log(nodes)
         resolve();
     });
 };

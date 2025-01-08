@@ -1,5 +1,5 @@
 const typedTextAnimation = async (e, node, delay) => {
-    const typingSpeed = 25; // Speed in milliseconds
+    const typingSpeed = 25; 
     const delayBeforeCaretRemoval = 500;
     const text = node.textContent;
 
@@ -8,7 +8,7 @@ const typedTextAnimation = async (e, node, delay) => {
             setTimeout(() => {
                 e.classList.add('typing-start');
                 e.textContent += text.charAt(l);
-                resolve(); // Proceed to the next character after the delay
+                resolve(); 
             }, typingSpeed);
         });
     }
@@ -31,7 +31,6 @@ export default async (nodes) => {
     return new Promise(async (resolve) => {
         const typing = document.getElementsByClassName('typing');
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-        console.log(typing);
 
         for (let k = 0; k < typing.length; k++) {
             if (nodes[k].nodeName === '#text') {
