@@ -16,6 +16,5 @@ window.onload = () => {
             .then(() => animateElements(nodes))
             .then(() => setWrapperHeight(false));
     };
-    // handleCookieLogic(terminalLoadingAnimation);
-    terminalLoadingAnimation();
+    handleCookieLogic(terminalLoadingAnimation);
 };
