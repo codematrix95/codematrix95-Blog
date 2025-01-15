@@ -27,7 +27,6 @@ export default (runFunction) => {
         runFunction();
     } else {
         pageVisible(true);
-        cookieExists();
     }
     cookieExpirationDate(cookieName);
 };

@@ -1,3 +1,5 @@
+@use '../minima/' as *;
+
 $abyss-black: #000000;
 $visited-green: #007700;
 $dark-green: #009900;
@@ -6,6 +8,7 @@ $shadow-green: #00ee00;
 
 .flicker-icon {
     animation: flicker 0.2s 20;
+    animation-delay: 10s;
 }
 
 .fade-in-icon {
@@ -18,7 +21,7 @@ $shadow-green: #00ee00;
 }
 
 .typing-start {
-    animation: flicker 0.2s infinite
+    animation: flicker 0.2s infinite;
 }
 
 .typing-start::after {
@@ -162,6 +165,7 @@ a {
     }
 
     .matrix-image {
+        border-radius: 5px;
         filter: grayscale(95%) brightness(1) contrast(1.5) hue-rotate(90deg);
         @media (max-width: 497px) {
             width: 50%;
@@ -169,7 +173,6 @@ a {
         @media (max-width: 400px) {
             width: 100%;
         }
-        border-radius: 5px;
     }
 
     .matrix-overlay {

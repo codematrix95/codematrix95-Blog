@@ -18,6 +18,11 @@ const typedTextAnimation = async (e, node, delay) => {
     e.classList.add('typing-end');
 };
 
+const matrixImgAnimation = (e) => {
+    e.parentNode.classList.add('flicker-img')
+    e.classList.add('fade-in-img')
+}
+
 const svgIconAnimation = (e) => {
     e.classList.add('flicker-icon');
     e.firstChild.classList.add('fade-in-icon');
@@ -35,6 +40,10 @@ export default async (nodes) => {
         for (let k = 0; k < typing.length; k++) {
             if (nodes[k].nodeName === '#text') {
                 await typedTextAnimation(typing[k], nodes[k], delay);
+            }
+
+            if(nodes[k].nodeName === 'IMG') {
+                matrixImgAnimation(typing[k])
             }
 
             if (nodes[k].nodeName === 'svg') {
