@@ -10,14 +10,13 @@ const terminalLoadingAnimation = () => {
     setWrapperHeight(true)
         .then(() => createNodeArray(nodes))
         .then(() => wrapNodesInSpanTagAndApplyTypingClass(nodes))
-        .then(() => pageVisible(true))
         .then(() => animateElements(nodes))
         .then(() => setWrapperHeight(false));
 };
 
-pageVisible(false).then(() => {
-    window.onload = () => {
-        // handleCookieLogic(terminalLoadingAnimation);
-        terminalLoadingAnimation();
-    };
-});
+window.onload = () => {
+    handleCookieLogic(terminalLoadingAnimation);
+    // terminalLoadingAnimation();
+};
+
+

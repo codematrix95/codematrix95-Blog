@@ -25,8 +25,6 @@ export default (runFunction) => {
     const cookieName = 'pageVisited';
     if (!doesCookieExist(cookieName)) {
         runFunction();
-    } else {
-        pageVisible(true);
-    }
+    } 
     cookieExpirationDate(cookieName);
 };
