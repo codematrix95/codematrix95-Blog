@@ -22,8 +22,6 @@ const acceptNode = (node) => {
     return NodeFilter.FILTER_SKIP;
 };
 
-
-
 const pushAcceptedNodeToNodesArray = (nodes, treeWalker) => {
     let currentNode;
     while ((currentNode = treeWalker.nextNode())) {

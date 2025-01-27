@@ -1,27 +1,24 @@
 const typedTextAnimation = async (e, node, delay, typingSpeed) => {
     const text = node.textContent;
-    let caretDelay = 600;
-    let fontSize = parseInt(window.getComputedStyle(e).fontSize, 10);
+    const fontSize = parseInt(window.getComputedStyle(e).fontSize, 10);
 
-    if (fontSize > 16) {
-        typingSpeed * 1.5;
-        caretDelay * 1.5;
-    } else {
-        true;
-    }
+    const adjustedTypingSpeed = fontSize > 16 ? typingSpeed * 1.5 : typingSpeed;
+    const adjustedCaretDelay = fontSize > 16 ? 600 * 1.5 : 600;
 
     e.classList.add('typing-start');
 
+    let currentText = '';
+
     for (let l = 0; l < text.length; l++) {
-        await new Promise((resolve) => {
-            setTimeout(() => {
-                e.textContent += text.charAt(l);
-                resolve();
-            }, typingSpeed);
-        });
+        currentText += text.charAt(l);
+        e.textContent = currentText;
+        await new Promise((resolve) =>
+            setTimeout(resolve, adjustedTypingSpeed)
+        );
     }
 
-    await delay(caretDelay);
+    await delay(adjustedCaretDelay);
+
     e.classList.remove('typing-start');
     e.classList.add('typing-end');
 };
@@ -29,40 +26,68 @@ const typedTextAnimation = async (e, node, delay, typingSpeed) => {
 const matrixImgAnimation = (e) => {
     e.parentNode.classList.add('flicker-img');
     e.classList.add('fade-in-img');
+    e.addEventListener('animationend', () => {}, { once: true });
 };
 
 const svgIconAnimation = (e, typingSpeed) => {
-    let duration = typingSpeed * 24;
+    const duration = typingSpeed * 24;
 
     e.classList.add('flicker-icon');
     e.firstChild.style.animation = `fade-in ${duration}ms ease-in forwards`;
 
-    e.addEventListener('animationend', () => {
-        e.classList.add('typing-end');
-    });
+    e.addEventListener(
+        'animationend',
+        () => {
+            e.classList.add('typing-end');
+            e.firstChild.removeAttribute('style');
+        },
+        { once: true }
+    );
 };
 
 export default async (nodes) => {
     return new Promise(async (resolve) => {
-        const typing = document.getElementsByClassName('typing');
+        const typing = document.querySelectorAll('.typing');
 
         const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-        for (let k = 0; k < typing.length; k++) {
-            let typingSpeed = 30;
+        for (let i = 0; i < typing.length; i++) {
+            const typingSpeed = 30;
+            const e = typing[i];
+            const node = nodes[i];
 
-            if (nodes[k].nodeName === '#text') {
-                await typedTextAnimation(typing[k], nodes[k], delay, typingSpeed);
-            }
+            if (!node) continue;
 
-            if (nodes[k].nodeName === 'IMG') {
-                matrixImgAnimation(typing[k]);
-            }
+            switch (node.nodeName) {
+                case '#text':
+                    await typedTextAnimation(e, node, delay, typingSpeed);
+                    break;
 
-            if (nodes[k].nodeName === 'svg') {
-                svgIconAnimation(typing[k], typingSpeed);
+                case 'IMG':
+                    matrixImgAnimation(e);
+                    break;
+
+                case 'svg':
+                    svgIconAnimation(e, typingSpeed);
+                    break;
+
+                default:
+                    console.warn(`Unhandled node type: ${node.nodeName}`);
             }
         }
+
+        document.querySelectorAll('span.typing').forEach((e) => {
+            if (e.firstChild && e.firstChild.parentElement) {
+                const parentOfFirstChild = e.firstChild.parentElement;
+                parentOfFirstChild.replaceWith(
+                    ...parentOfFirstChild.childNodes
+                );
+            }
+            e.replaceWith(e.innerHTML);
+        });
+
+        nodes.length = 0;
+
         resolve();
     });
 };
