@@ -1,12 +1,12 @@
 ---
 layout: about
 title: About
-permalink: /about/
-script: "../assets/js/terminal-loading-animation/terminalLoadingAnimation.js"
+permalink: /about
+script: "../assets/js/pages/about.js"
 ---
 
 Hi, I'm Uriah Schreur, a Junior Web Developer passionate about creating accessible,
-user-friendly web applications.
+user-friendly web applications.  
 
 Guided by amazing developers I met online,
 I started my journey and have been learning ever since.

@@ -1,0 +1,34 @@
+@use './animations/' as *;
+// for text being typed on the screen
+.typing {
+    opacity: 0;
+}
+
+.typing-start {
+    animation: flicker 0.15s infinite, color-separation 1.6s infinite;
+    &::after {
+        content: '|';
+        position: relative;
+        right: 1.75%;
+        animation: flicker 0.15s infinite, caret-blink 0.25s step-start infinite;
+    }
+}
+
+// for svg icons in the footer during the animation
+.flicker-icon {
+    animation: flicker 0.15s infinite;
+}
+
+.typing-end {
+    opacity: 1;
+    animation: none;
+}
+
+// for images during animation
+.flicker-img {
+    animation: flicker 0.15s 75;
+}
+
+.fade-in-img {
+    animation: fade-in 25s ease-in-out forwards;
+}

@@ -1,17 +1,7 @@
-import pageVisible from "./pageVisible.js";
-
 const doesCookieExist = (cookieName) => {
     return document.cookie
         .split('; ')
         .some((cookie) => cookie.startsWith(`${cookieName}=`));
-};
-
-const cookieExists = () => {
-    const flickerImg = document.getElementsByClassName('flicker-img')[0];
-    const fadeInImg = document.getElementsByClassName('fade-in-img')[0];
-
-    flickerImg.classList.remove('flicker-img');
-    fadeInImg.classList.remove('fade-in-img');
 };
 
 const cookieExpirationDate = (cookieName) => {
@@ -21,12 +11,12 @@ const cookieExpirationDate = (cookieName) => {
     document.cookie = `${cookieName}=true; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
 };
 
-export default (runFunction) => {
+const handleCookieLogic = (runFunction) => {
     const cookieName = 'pageVisited';
     if (!doesCookieExist(cookieName)) {
         runFunction();
-    } else {
-        pageVisible(true);
     }
     cookieExpirationDate(cookieName);
 };
+
+export default handleCookieLogic;

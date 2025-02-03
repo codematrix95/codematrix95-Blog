@@ -1,0 +1,28 @@
+@use '../abstracts/colors' as *;
+// styles navbar title e.g. codematrix95 - Blog
+.site-title,
+.site-title:visited {
+    color: $matrix-green;
+}
+
+// styles page links within the navbar
+.site-nav .page-link {
+    color: $matrix-green;
+    line-height: 1.5;
+}
+
+// styles the menu icon on mobile devices
+.site-nav {
+    background-color: $abyss-black;
+    border-color: $matrix-green;
+    border-radius: 2px;
+
+    @media (max-width: 600px) {
+        translate: 0px 10px;
+    }
+    .menu-icon {
+        svg {
+            fill: $matrix-green;
+        }
+    }
+}
