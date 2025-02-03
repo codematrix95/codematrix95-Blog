@@ -1,4 +1,18 @@
-const typedTextAnimation = async (e, node, delay, typingSpeed) => {
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const typeText = async (e, text, adjustedTypingSpeed) => {
+    let currentText = '';
+
+    for (let l = 0; l < text.length; l++) {
+        currentText += text.charAt(l);
+        e.textContent = currentText;
+        await delay(adjustedTypingSpeed);
+    }
+};
+
+const typedTextAnimation = async (e, node, typingSpeed) => {
+    const firstElement = document.getElementsByClassName('typing')[0];
+
     const text = node.textContent;
     const fontSize = parseInt(window.getComputedStyle(e).fontSize, 10);
 
@@ -7,14 +21,11 @@ const typedTextAnimation = async (e, node, delay, typingSpeed) => {
 
     e.classList.add('typing-start');
 
-    let currentText = '';
-
-    for (let l = 0; l < text.length; l++) {
-        currentText += text.charAt(l);
-        e.textContent = currentText;
-        await new Promise((resolve) =>
-            setTimeout(resolve, adjustedTypingSpeed)
-        );
+    if (e === firstElement) {
+        await delay(750);
+        await typeText(e, text, adjustedTypingSpeed);
+    } else {
+        await typeText(e, text, adjustedTypingSpeed);
     }
 
     await delay(adjustedCaretDelay);
@@ -49,8 +60,6 @@ const animateElements = async (nodes) => {
     return new Promise(async (resolve) => {
         const typing = document.querySelectorAll('.typing');
 
-        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
         for (let i = 0; i < typing.length; i++) {
             const typingSpeed = 30;
             const e = typing[i];
@@ -60,7 +69,7 @@ const animateElements = async (nodes) => {
 
             switch (node.nodeName) {
                 case '#text':
-                    await typedTextAnimation(e, node, delay, typingSpeed);
+                    await typedTextAnimation(e, node, typingSpeed);
                     break;
 
                 case 'IMG':
@@ -92,4 +101,4 @@ const animateElements = async (nodes) => {
     });
 };
 
-export default animateElements
+export default animateElements;
