@@ -15,7 +15,7 @@ const acceptNode = (node) => {
         if (node.classList.contains('svg-icon')) {
             return NodeFilter.FILTER_ACCEPT;
         }
-        if (node.classList.contains('matrix-image')) {
+        if (node.classList.contains('hero-img')) {
             return NodeFilter.FILTER_ACCEPT;
         }
     }
@@ -29,7 +29,7 @@ const pushAcceptedNodeToNodesArray = (nodes, treeWalker) => {
     }
 };
 
-export default (nodes) => {
+const createNodeArray = (nodes) => {
     return new Promise((resolve) => {
         const treeWalker = document.createTreeWalker(
             document.body,
@@ -40,3 +40,5 @@ export default (nodes) => {
         resolve();
     });
 };
+
+export default createNodeArray

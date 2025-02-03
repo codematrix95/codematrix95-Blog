@@ -1,14 +1,23 @@
 @use '../../minima/' as *;
 @use '../abstracts/' as *;
+@use './animations/fade-out' as *;
 @use './terminalLoadingAnimation' as *;
 
 body {
-    background-color: $abyss-black; /* Black background */
-    color: $dark-green; /* Matrix Green text */
+    visibility: hidden;
+    background-color: $abyss-black; 
+    color: $dark-green; 
     opacity: 95%;
-    animation: fade-in 250ms;
     @include OCRA-font();
     @include crt-filter();
+}
+
+.fade-in {
+    animation: fade-in 250ms;
+}
+
+.fade-out {
+    animation: fade-out 350ms;
 }
 
 a {
@@ -26,5 +35,15 @@ a {
             filter: drop-shadow(0px 0px 1px $shadow-green);
             transition: filter 125ms ease-in-out;
         }
+    }
+}
+
+code {
+    border-color: transparent;
+    &.language-plaintext {
+        color: $abyss-black;
+        background-color: $dark-green;
+        text-wrap: nowrap;
+        font-weight: bold;
     }
 }

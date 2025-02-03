@@ -1,12 +1,11 @@
 @use './animations/' as *;
-
 // for text being typed on the screen
 .typing {
     opacity: 0;
 }
 
 .typing-start {
-    animation: flicker 0.15s infinite;
+    animation: flicker 0.15s infinite, color-separation 1.6s infinite;
     &::after {
         content: '|';
         position: relative;

@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /about/
-script: "../assets/js/terminal-loading-animation/terminalLoadingAnimation.js"
+script: "../assets/js/pages/about.js"
 ---
 
 Hi, I'm Uriah Schreur, a Junior Web Developer passionate about creating accessible,

@@ -1,8 +1,8 @@
-import setWrapperHeight from './functions/setWrapperHeight.js';
-import createNodeArray from './functions/createNodeArray.js';
-import wrapNodesInSpanTagAndApplyTypingClass from './functions/wrapNodesInSpanTagAndApplyTypingClass.js';
-import animateElements from './functions/animateElements.js';
-import handleCookieLogic from './functions/handleCookieLogic.js';
+import setWrapperHeight from './helpers/setWrapperHeight.js';
+import createNodeArray from './helpers/createNodeArray.js';
+import wrapNodesInSpanTagAndApplyTypingClass from './helpers/wrapNodesInSpanTagAndApplyTypingClass.js';
+import animateElements from './helpers/animateElements.js';
+import handleCookieLogic from './helpers/handleCookieLogic.js';
 
 const terminalLoadingAnimation = () => {
     const nodes = [];
@@ -13,10 +13,4 @@ const terminalLoadingAnimation = () => {
         .then(() => setWrapperHeight(false));
 };
 
-const onLoad = () => {
-    // handleCookieLogic(terminalLoadingAnimation);
-    terminalLoadingAnimation();
-    window.removeEventListener('load', onLoad); 
-};
-
-window.addEventListener('load', onLoad);
+export default terminalLoadingAnimation

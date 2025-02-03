@@ -11,10 +11,12 @@ const cookieExpirationDate = (cookieName) => {
     document.cookie = `${cookieName}=true; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
 };
 
-export default (runFunction) => {
+const handleCookieLogic = (runFunction) => {
     const cookieName = 'pageVisited';
     if (!doesCookieExist(cookieName)) {
         runFunction();
-    } 
+    }
     cookieExpirationDate(cookieName);
 };
+
+export default handleCookieLogic;

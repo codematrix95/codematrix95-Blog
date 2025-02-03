@@ -7,7 +7,7 @@
         display: block;
     }
 
-    .matrix-image {
+    .hero-img {
         border-radius: 5px;
         filter: grayscale(95%) brightness(1) contrast(1.5) hue-rotate(90deg);
         @media (max-width: 497px) {
@@ -18,7 +18,7 @@
         }
     }
 
-    .matrix-overlay {
+    .hero-overlay {
         background: repeating-linear-gradient(transparent, $shadow-green);
         mix-blend-mode: multiply;
     }

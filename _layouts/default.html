@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
     <head>
-        {%- include favicon.html -%}
-        {%- include head.html -%}
+        {%- include favicon.html -%} {%- include head.html -%}
     </head>
     <body>
         {%- include header.html -%}
@@ -12,11 +11,18 @@
         >
             <div class="wrapper">{{ content }}</div>
         </main>
-        {%- include footer.html -%} {%- if page.script -%}
+        {%- include footer.html -%} 
+        {%- if site.global_script -%}
         <script
             type="module"
-            src="{{ page.script }}"
+            src="{{ site.global_script | relative_url }}"
         ></script>
-        {%- endif -%}
+            {%- if page.script -%}
+            <script
+                type="module"
+                src="{{ page.script | relative_url }}"
+            ></script>
+            {%- endif -%} 
+        {%- endif -%} 
     </body>
 </html>
