@@ -24,15 +24,16 @@ title: codematrix95 - Blog
 author: Author - Uriah Schreur
 email: codematrix95@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-    As a self-taught developer, I aim to help you avoid endless hours of trial-and-error & get you a step closer to completing your projects!
-baseurl: '' # the subpath of your site, e.g. /blog
-url: 'https://codematrix95.com' # the base hostname & protocol for your site, e.g. http://example.com
+  As a self-taught developer, I aim to help you avoid endless hours of
+  trial-and-error & get you a step closer to completing your projects!
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://codematrix95.com" # the base hostname & protocol for your site, e.g. http://example.com
 
-# Global script file 
+# Global script file
 global_script: "./assets/js/main.js"
 # Include folders
 include:
-    - pages
+  - pages
 
 github_username: codematrix95
 linkedin_username: uriah-schreur
@@ -40,10 +41,11 @@ linkedin_username: uriah-schreur
 # Build settings
 theme: minima
 plugins:
-    - jekyll-feed
+  - jekyll-feed
 sass:
-    sass_dir: _sass
-
+  style: compressed
+  load_paths:
+    - _sass
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
