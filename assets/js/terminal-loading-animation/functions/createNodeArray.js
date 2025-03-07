@@ -11,34 +11,27 @@ const acceptNode = (node) => {
     if (node.nodeType === Node.TEXT_NODE) {
         return handleTextNode(node);
     }
-    if (node.nodeType === Node.ELEMENT_NODE) {
-        if (node.classList.contains('svg-icon')) {
-            return NodeFilter.FILTER_ACCEPT;
-        }
-        if (node.classList.contains('hero-img')) {
-            return NodeFilter.FILTER_ACCEPT;
-        }
+    if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('svg-icon')) {
+        return NodeFilter.FILTER_ACCEPT;
     }
     return NodeFilter.FILTER_SKIP;
 };
 
 const pushAcceptedNodeToNodesArray = (nodes, treeWalker) => {
     let currentNode;
-    while ((currentNode = treeWalker.nextNode())) {
-        nodes.push(currentNode);
-    }
-};
+        while ((currentNode = treeWalker.nextNode())) {
+            nodes.push(currentNode);
+        }
+}
 
-const createNodeArray = (nodes) => {
+export default (nodes) => {
     return new Promise((resolve) => {
         const treeWalker = document.createTreeWalker(
             document.body,
             NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT,
             { acceptNode }
         );
-        pushAcceptedNodeToNodesArray(nodes, treeWalker);
+        pushAcceptedNodeToNodesArray(nodes, treeWalker)
         resolve();
     });
 };
-
-export default createNodeArray

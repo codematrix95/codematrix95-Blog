@@ -1,0 +1,240 @@
+$abyss-black: #000000;
+$visited-green: #007700;
+$dark-green: #009900;
+$matrix-green: #00bb00;
+$shadow-green: #00ee00;
+
+.flicker-icon {
+    animation: flicker 0.2s 20;
+}
+
+.fade-in-icon {
+    animation: fadeIn 600ms ease-in-out forwards;
+}
+
+.typing {
+    opacity: 0;
+    // background-color: red;
+}
+
+.typing-start {
+    animation: flicker 0.2s infinite
+}
+
+.typing-start::after {
+    content: '|';
+    position: relative;
+    right: 1.75%;
+    animation: flicker 0.2s infinite, blink 0.5s step-start infinite;
+}
+
+.typing-end {
+    opacity: 1;
+    animation: none;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+body {
+    font-family: 'OCRA', sans-serif; // Fallback to sans-serif if the custom font fails to load
+    background-color: $abyss-black; /* Black background */
+    color: $dark-green; /* Matrix Green text */
+    opacity: 95%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased; /* For Webkit-based browsers (Chrome, Safari) */
+    -moz-osx-font-smoothing: grayscale; /* For Firefox on Mac OS X */
+}
+
+// styles the date of the post
+.post-meta {
+    color: $dark-green;
+}
+
+a {
+    color: $matrix-green;
+    &:visited {
+        color: $visited-green;
+    }
+    &:hover {
+        color: $matrix-green; /* Lighter Green on hover */
+        // text-shadow: 0 0 2px $shadow-green;
+        transition: color 250ms ease-in-out;
+        text-decoration: none;
+        // color: #00ff00;
+        text-shadow: 0 0 5px $matrix-green, 0 0 10px $matrix-green,
+            0 0 20px $matrix-green;
+        animation: flicker 0.2s infinite;
+        .svg-icon {
+            fill: $matrix-green;
+            filter: drop-shadow(0px 0px 1px $shadow-green);
+            transition: filter 125ms ease-in-out;
+        }
+    }
+}
+
+// header styles
+.site-header {
+    border-color: $dark-green;
+    border: 0px;
+    padding: 15px 0 0 0;
+}
+
+// styles navbar title e.g. codematrix95 - Blog
+.site-title,
+.site-title:visited {
+    color: $matrix-green;
+}
+
+// styles page links within the navar
+.site-nav .page-link {
+    color: $matrix-green;
+    line-height: 1.5;
+}
+
+// styles the menu icon on mobile devices
+.site-nav {
+    background-color: $abyss-black;
+    border-color: $matrix-green;
+    border-radius: 2px;
+
+    @media (max-width: 600px) {
+        translate: 0px 10px;
+    }
+    .menu-icon {
+        svg {
+            fill: $matrix-green;
+        }
+    }
+}
+
+// Footer styles
+.site-footer {
+    border: none;
+    padding: 15px 0px;
+    // styles link titles of links e.g. Uriah Schreur
+    .social-media-list {
+        li {
+            text-wrap: nowrap;
+            padding-top: 10px;
+            .username {
+                text-decoration: none;
+            }
+        }
+    }
+    // styles link icons
+    .svg-icon {
+        fill: $dark-green;
+        scale: 1.5;
+        translate: 6px -2px;
+        filter: drop-shadow(0px 0px 1px transparent);
+    }
+    // styles Author - Uriah Schreur
+    .p-name {
+        color: $dark-green;
+    }
+    // styles description
+    p {
+        color: $dark-green;
+    }
+}
+
+.ribbon {
+    background-color: #5bc8f7;
+}
+
+.ribbon::after {
+    content: 'This is a fancy orange box.';
+    background-color: #ffba10;
+    border-color: black;
+    border-style: dotted;
+}
+
+// styles about page
+.about-container {
+    display: flex;
+    position: relative;
+    @media (max-width: 497px) {
+        display: block;
+    }
+
+    .matrix-image {
+        filter: grayscale(95%) brightness(1) contrast(1.5) hue-rotate(90deg);
+        @media (max-width: 497px) {
+            width: 50%;
+        }
+        @media (max-width: 400px) {
+            width: 100%;
+        }
+        border-radius: 5px;
+    }
+
+    .matrix-overlay {
+        background: repeating-linear-gradient(transparent, $shadow-green);
+        mix-blend-mode: multiply;
+    }
+
+    div:nth-child(1) {
+        position: relative;
+        width: 90%;
+        margin-right: 10%;
+
+        @media (max-width: 497px) {
+            margin: 0 0 15px;
+        }
+        @media (max-width: 400px) {
+            width: 100%;
+        }
+    }
+
+    div:nth-child(2) {
+        width: 100%;
+    }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.flicker-img {
+    animation: flicker 0.2s 60;
+}
+
+/* Flicker-fade-in setup */
+.fade-in-img {
+    animation: fadeIn 30s ease-in-out forwards;
+}
+
+// imports fonts
+@font-face {
+    font-family: 'OCRA';
+    src: url('/assets/fonts/OCRA.woff2') format('woff2'),
+        url('/assets/fonts/OCRA.woff') format('woff'),
+        url('/assets/fonts/OCRA.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@keyframes flicker {
+    40% {
+        opacity: 0.4;
+    }
+    70% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
+    }
+}

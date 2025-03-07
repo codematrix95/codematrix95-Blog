@@ -1,4 +1,4 @@
-const setWrapperHeight = (x) => {
+export default (x) => {
     return new Promise((resolve) => {
         const wrappers = document.getElementsByClassName('wrapper');
 
@@ -12,5 +12,3 @@ const setWrapperHeight = (x) => {
         resolve();
     });
 };
-
-export default setWrapperHeight;
