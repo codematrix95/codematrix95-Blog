@@ -2,5 +2,5 @@
 
 ---
 
-@import "minima";
-@import "custom"; 
+@use '../_sass/minima/' as *;
+@use '../_sass/matrix/' as *;

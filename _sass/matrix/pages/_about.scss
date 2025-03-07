@@ -1,0 +1,42 @@
+@use '../abstracts/colors' as *;
+.about-container {
+    display: flex;
+    position: relative;
+
+    @media (max-width: 497px) {
+        display: block;
+    }
+
+    .hero-img {
+        border-radius: 5px;
+        filter: grayscale(95%) brightness(1) contrast(1.5) hue-rotate(90deg);
+        @media (max-width: 497px) {
+            width: 50%;
+        }
+        @media (max-width: 400px) {
+            width: 100%;
+        }
+    }
+
+    .hero-overlay {
+        background: repeating-linear-gradient(transparent, $shadow-green);
+        mix-blend-mode: multiply;
+    }
+
+    div:nth-child(1) {
+        position: relative;
+        width: 90%;
+        margin-right: 10%;
+
+        @media (max-width: 497px) {
+            margin: 0 0 15px;
+        }
+        @media (max-width: 400px) {
+            width: 100%;
+        }
+    }
+
+    div:nth-child(2) {
+        width: 100%;
+    }
+}
