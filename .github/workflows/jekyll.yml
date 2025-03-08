@@ -1,0 +1,36 @@
+name: Deploy Jekyll Site with Dart Sass
+
+on:
+  push:
+    branches:
+      - main  # Change if your default branch is different
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Dart Sass
+        run: npm install -g sass
+
+      - name: Compile Sass
+        run: sass _sass:assets/css
+
+      - name: Setup Ruby and Install Jekyll
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'  # Adjust based on your needs
+
+      - name: Install Jekyll Dependencies
+        run: bundle install
+
+      - name: Build Jekyll Site
+        run: bundle exec jekyll build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
