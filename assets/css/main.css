@@ -919,11 +919,11 @@ body::after {
 }
 
 .fade-in {
-  animation: fade-in 400ms;
+  animation: fade-in 500ms;
 }
 
 .fade-out {
-  animation: fade-out 500ms;
+  animation: fade-out 600ms;
 }
 
 a {
