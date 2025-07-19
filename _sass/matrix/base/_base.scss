@@ -1,48 +1,49 @@
-@use '../abstracts/' as *;
-@use './animations/fade-out' as *;
-@use './terminalLoadingAnimation' as *;
+@use "../abstracts/" as *;
+@use "./animations/fade-out" as *;
+@use "./terminalLoadingAnimation" as *;
 
 body {
-    visibility: hidden;
-    background-color: $abyss-black; 
-    color: $dark-green; 
-    opacity: 95%;
-    @include OCRA-font();
-    @include crt-filter();
+  visibility: hidden;
+  background-color: $abyss-black;
+  color: $dark-green;
+  opacity: 95%;
+  @include OCRA-font();
+  @include crt-filter();
 }
 
 .fade-in {
-    animation: fade-in 400ms;
+  visibility: visible;
+  animation: fade-in 400ms forwards;
 }
 
 .fade-out {
-    animation: fade-out 500ms;
+  animation: fade-out 800ms;
 }
 
 a {
-    color: $matrix-green;
-    &:visited {
-        color: $visited-green;
+  color: $matrix-green;
+  &:visited {
+    color: $visited-green;
+  }
+  &:hover {
+    color: $shadow-green;
+    transition: color 250ms ease-in-out;
+    text-decoration: none;
+    animation: flicker 0.15s infinite, color-separation 1.6s infinite;
+    .svg-icon {
+      fill: $matrix-green;
+      filter: drop-shadow(0px 0px 1px $shadow-green);
+      transition: filter 125ms ease-in-out;
     }
-    &:hover {
-        color: $shadow-green;
-        transition: color 250ms ease-in-out;
-        text-decoration: none;
-        animation: flicker 0.15s infinite, color-separation 1.6s infinite;
-        .svg-icon {
-            fill: $matrix-green;
-            filter: drop-shadow(0px 0px 1px $shadow-green);
-            transition: filter 125ms ease-in-out;
-        }
-    }
+  }
 }
 
 code {
-    border-color: transparent;
-    &.language-plaintext {
-        color: $abyss-black;
-        background-color: $dark-green;
-        text-wrap: nowrap;
-        font-weight: bold;
-    }
+  border-color: transparent;
+  &.language-plaintext {
+    color: $abyss-black;
+    background-color: $dark-green;
+    text-wrap: nowrap;
+    font-weight: bold;
+  }
 }
